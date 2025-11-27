@@ -47,7 +47,6 @@
         }
 
         /* GLOBAL SCROLL OFFSET FIX */
-        /* Ensures any element with an ID respects the fixed header height */
         [id] {
             scroll-margin-top: 130px; /* 90px Header + 40px Buffer */
         }
@@ -67,7 +66,6 @@
             cursor: pointer;
         }
         
-        /* Hover State */
         a.ref-link:hover {
             color: #fff;
             border-bottom-style: solid;
@@ -75,7 +73,6 @@
             border-bottom-color: #fff;
         }
 
-        /* TEMPORARY VISITED STATE (Applied via JS) */
         a.ref-link.clicked-session {
             color: var(--color-visited);
             border-bottom-color: var(--color-visited);
@@ -113,15 +110,12 @@
             animation: fadeIn 0.5s ease;
         }
 
-        /* Container for anchor targets to ensure alignment */
         .target-container {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            /* Scroll margin is applied via [id] selector globally */
         }
 
-        /* Specific style for the Header target container */
         #hub-architecture.target-container {
             border-bottom: 2px solid rgba(255,255,255,0.15);
             margin-top: 2.5rem;
@@ -129,7 +123,6 @@
             padding-bottom: 0.5rem;
         }
         
-        /* Reset margins for elements inside target containers */
         .target-container h3, .target-container p {
             margin: 0;
             padding: 0;
@@ -161,7 +154,7 @@
             align-items: center;
             justify-content: space-between; 
             height: 100%;
-            flex-wrap: nowrap; 
+            flex-wrap: nowrap;
         }
 
         .header-logo {
@@ -207,7 +200,7 @@
             display: flex;
             align-items: center;
             width: 220px; 
-            justify-content: center; 
+            justify-content: center;
         }
 
         a.dropdown-trigger {
@@ -272,7 +265,7 @@
         }
 
         .h-link.active {
-            color: #fff; 
+            color: #fff;
             background-color: rgba(255, 255, 255, 0.1); 
             border-left: 3px solid #fff; 
         }
@@ -377,15 +370,16 @@
 
         /* --------------------------- */
 
+        /* EDITED: Removed border-bottom as requested */
         .task-header {
             font-size: 2.5rem;
             font-weight: 800;
             margin-bottom: 2rem;
             margin-top: 4rem;
             padding-bottom: 1rem;
-            border-bottom: 2px solid rgba(255,255,255,0.1);
+            border-bottom: none; /* Removed underline */
             color: var(--text-muted);
-            scroll-margin-top: 120px; 
+            scroll-margin-top: 120px;
         }
         .task-header:first-of-type { margin-top: 0; }
         .task-header span { color: var(--text-main); }
@@ -399,12 +393,13 @@
 
         section:nth-child(1) { animation-delay: 0.1s; }
 
+        /* EDITED: Removed border-bottom as requested */
         .section-header {
             display: flex;
             align-items: center;
             margin-bottom: 2rem;
             padding-bottom: 1rem;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            border-bottom: none; /* Removed underline */
         }
 
         .section-title {
@@ -419,7 +414,7 @@
             border-radius: 12px;
             padding: 2.5rem;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            border-left: 5px solid var(--color-accent); 
+            border-left: 5px solid var(--color-accent);
         }
 
         h3 {
@@ -432,7 +427,7 @@
             margin-bottom: 1.2rem;
             border-bottom: 2px solid rgba(255,255,255,0.15);
             padding-bottom: 0.5rem;
-            scroll-margin-top: 120px; 
+            scroll-margin-top: 120px;
         }
         h3:first-child { margin-top: 0; }
 
@@ -562,9 +557,40 @@
                 width: 100%;
             }
 
-            .mobile-logo { font-weight: 800; font-size: 1.2rem; cursor: pointer; }
+            /* EDITED: Updated to row for horizontal layout */
+            .mobile-logo { 
+                display: flex;
+                flex-direction: row; /* Horizontal alignment */
+                align-items: center; /* Vertically center */
+                cursor: pointer;
+                line-height: 1;
+            }
+            
+            /* EDITED: Specific classes for cleaner control */
+            .logo-main {
+                font-weight: 800; 
+                font-size: 1.2rem;
+                color: #fff;
+            }
+            .logo-sep {
+                color: var(--text-muted);
+                margin: 0 10px;
+                font-size: 1.2rem;
+                font-weight: 300;
+                opacity: 0.5;
+                padding-bottom: 2px; /* Visual optical alignment */
+            }
+            .logo-sub {
+                font-size: 0.75rem;
+                color: var(--text-muted);
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                padding-top: 2px; /* Visual optical alignment */
+            }
+
             .burger-btn { background: none; border: none; color: white; font-size: 1.8rem; cursor: pointer; }
 
+            /* EDITED: Added overflow: hidden to container and flex column */
             #mobile-sidebar {
                 display: flex;
                 flex-direction: column;
@@ -578,10 +604,17 @@
                 transform: translateX(100%);
                 transition: transform 0.3s ease;
                 border-left: 1px solid rgba(255,255,255,0.1);
-                overflow-y: auto;
+                overflow: hidden; /* Fix footer in place */
             }
 
             #mobile-sidebar.active { transform: translateX(0); }
+            
+            /* EDITED: New class for scrollable content inside sidebar */
+            .mobile-scroll-content {
+                flex: 1;
+                overflow-y: auto;
+                padding-right: 5px; /* Prevent scrollbar overlap visual */
+            }
 
             .overlay {
                 display: none;
@@ -633,7 +666,8 @@
             }
 
             .m-link {
-                display: block; padding: 12px 0; 
+                display: block;
+                padding: 12px 0; 
                 color: var(--text-body); 
                 text-decoration: none;
                 font-size: 0.9rem; font-weight: 500;
@@ -648,6 +682,7 @@
                 font-weight: 700;
             }
             
+            /* EDITED: Ensure footer doesn't shrink */
             .mobile-copyright {
                 margin-top: auto;
                 padding-top: 2rem;
@@ -655,11 +690,13 @@
                 color: var(--text-muted);
                 font-size: 0.8rem;
                 opacity: 0.6;
-                padding-bottom: 4rem; 
+                padding-bottom: 4rem;
+                flex-shrink: 0;
             }
             
             .close-btn { 
-                background: none; border: none; color: #fff; font-size: 1.5rem; 
+                background: none;
+                border: none; color: #fff; font-size: 1.5rem; 
                 align-self: flex-end; margin-bottom: 1rem; cursor: pointer;
             }
 
@@ -727,7 +764,11 @@
     </header>
 
     <div class="mobile-top-bar">
-        <div class="mobile-logo" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">GAMELOFT</div>
+        <div class="mobile-logo" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+            <span class="logo-main">GAMELOFT</span>
+            <span class="logo-sep">|</span>
+            <span class="logo-sub">Shop Analysis</span>
+        </div>
         <button class="burger-btn" onclick="toggleMenu()">☰</button>
     </div>
 
@@ -735,51 +776,52 @@
 
     <nav id="mobile-sidebar">
         <button class="close-btn" onclick="toggleMenu()">✕</button>
-        <div style="margin-bottom: 2rem;">
+        
+        <div style="margin-bottom: 2rem; cursor: pointer;" onclick="toggleMenu(); window.scrollTo({top: 0, behavior: 'smooth'})">
             <h1>GAMELOFT</h1>
             <p style="color:var(--text-muted); font-size:0.8rem;">Shop Analysis</p>
         </div>
 
-        <a href="https://www.figma.com/design/Qz72ZQgABgQAbF7dzNaZWc/ux_audit?node-id=0-1&t=Nh18cEJZhtTo2fZI-1" target="_blank" class="m-link" style="background: rgba(0, 229, 255, 0.1); border: 1px solid var(--color-accent); margin-bottom: 1.5rem; display:flex; align-items:center; justify-content:center; gap:10px; border-radius: 8px; border-left: 1px solid var(--color-accent);">
-            <svg width="16" height="24" viewBox="0 0 18 27" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M4.5 27C6.98528 27 9 24.9853 9 22.5V18H4.5C2.01472 18 0 20.0147 0 22.5C0 24.9853 2.01472 27 4.5 27Z" fill="#0ACF83"/>
-                <path d="M0 13.5C0 11.0147 2.01472 9 4.5 9H9V18H4.5C2.01472 18 0 15.9853 0 13.5Z" fill="#A259FF"/>
-                <path d="M0 4.5C0 2.01472 2.01472 0 4.5 0H9V9H4.5C2.01472 9 0 6.9853 0 4.5Z" fill="#F24E1E"/>
-                <path d="M9 0H13.5C15.9853 0 18 2.01472 18 4.5C18 6.9853 15.9853 9 13.5 9H9V0Z" fill="#FF7262"/>
-                <path d="M18 13.5C18 15.9853 15.9853 18 13.5 18C11.0147 18 9 15.9853 9 13.5C9 11.0147 11.0147 9 13.5 9C15.9853 9 18 11.0147 18 13.5Z" fill="#1ABCFE"/>
-            </svg>
-            Open Figma File
-        </a>
+        <div class="mobile-scroll-content">
+            <a href="https://www.figma.com/design/Qz72ZQgABgQAbF7dzNaZWc/ux_audit?node-id=0-1&t=Nh18cEJZhtTo2fZI-1" target="_blank" class="m-link" style="background: rgba(0, 229, 255, 0.1); border: 1px solid var(--color-accent); margin-bottom: 1.5rem; display:flex; align-items:center; justify-content:center; gap:10px; border-radius: 8px; border-left: 1px solid var(--color-accent);">
+                <svg width="16" height="24" viewBox="0 0 18 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4.5 27C6.98528 27 9 24.9853 9 22.5V18H4.5C2.01472 18 0 20.0147 0 22.5C0 24.9853 2.01472 27 4.5 27Z" fill="#0ACF83"/>
+                    <path d="M0 13.5C0 11.0147 2.01472 9 4.5 9H9V18H4.5C2.01472 18 0 15.9853 0 13.5Z" fill="#A259FF"/>
+                    <path d="M0 4.5C0 2.01472 2.01472 0 4.5 0H9V9H4.5C2.01472 9 0 6.9853 0 4.5Z" fill="#F24E1E"/>
+                    <path d="M9 0H13.5C15.9853 0 18 2.01472 18 4.5C18 6.9853 15.9853 9 13.5 9H9V0Z" fill="#FF7262"/>
+                    <path d="M18 13.5C18 15.9853 15.9853 18 13.5 18C11.0147 18 9 15.9853 9 13.5C9 11.0147 11.0147 9 13.5 9C15.9853 9 18 11.0147 18 13.5Z" fill="#1ABCFE"/>
+                </svg>
+                Open Figma File
+            </a>
 
-        <div class="m-accordion">
-            <button class="m-accordion-btn" onclick="toggleAccordion(this)">Task 1: Research <span class="arrow">▾</span></button>
-            <div class="m-accordion-content">
-                <a href="#strengths" class="m-link" onclick="toggleMenu()">💪 Strengths</a>
-                <a href="#weaknesses" class="m-link" onclick="toggleMenu()">📉 Weaknesses</a>
-                <a href="#opportunities" class="m-link" onclick="toggleMenu()">🚀 Opportunities</a>
-                <a href="#threats" class="m-link" onclick="toggleMenu()">⚠️ Threats</a>
+            <div class="m-accordion">
+                <button class="m-accordion-btn" onclick="toggleAccordion(this)">Task 1: Research <span class="arrow">▾</span></button>
+                <div class="m-accordion-content">
+                    <a href="#strengths" class="m-link" onclick="toggleMenu()">💪 Strengths</a>
+                    <a href="#weaknesses" class="m-link" onclick="toggleMenu()">📉 Weaknesses</a>
+                    <a href="#opportunities" class="m-link" onclick="toggleMenu()">🚀 Opportunities</a>
+                    <a href="#threats" class="m-link" onclick="toggleMenu()">⚠️ Threats</a>
+                </div>
             </div>
-        </div>
 
-        <div class="m-accordion">
-            <button class="m-accordion-btn" onclick="toggleAccordion(this)">Task 2: Solutions <span class="arrow">▾</span></button>
-            <div class="m-accordion-content">
-                <a href="#solution1" class="m-link" onclick="toggleMenu()">🔑 Login Friction</a>
-                <a href="#solution2" class="m-link" onclick="toggleMenu()">🕸️ Nav & Hub</a>
-                <a href="#solution3" class="m-link" onclick="toggleMenu()">💳 Conversion Path</a>
+            <div class="m-accordion">
+                <button class="m-accordion-btn" onclick="toggleAccordion(this)">Task 2: Solutions <span class="arrow">▾</span></button>
+                <div class="m-accordion-content">
+                    <a href="#solution1" class="m-link" onclick="toggleMenu()">🔑 Login Friction</a>
+                    <a href="#solution2" class="m-link" onclick="toggleMenu()">🕸️ Nav & Hub</a>
+                    <a href="#solution3" class="m-link" onclick="toggleMenu()">💳 Conversion Path</a>
+                </div>
             </div>
-        </div>
 
-        <div class="m-accordion">
-            <button class="m-accordion-btn" onclick="toggleAccordion(this)">Task 3: Leadership <span class="arrow">▾</span></button>
-            <div class="m-accordion-content">
-                <a href="#leadership-context" class="m-link" onclick="toggleMenu()">🧠 Context & Why</a>
-                <a href="#leadership-steps" class="m-link" onclick="toggleMenu()">👣 Steps & Process</a>
-                <a href="#leadership-mentor" class="m-link" onclick="toggleMenu()">🎓 Mentorship</a>
+            <div class="m-accordion">
+                <button class="m-accordion-btn" onclick="toggleAccordion(this)">Task 3: Leadership <span class="arrow">▾</span></button>
+                <div class="m-accordion-content">
+                    <a href="#leadership-context" class="m-link" onclick="toggleMenu()">🧠 Context & Why</a>
+                    <a href="#leadership-steps" class="m-link" onclick="toggleMenu()">👣 Steps & Process</a>
+                    <a href="#leadership-mentor" class="m-link" onclick="toggleMenu()">🎓 Mentorship</a>
+                </div>
             </div>
-        </div>
-
-        <div class="mobile-copyright">
+        </div> <div class="mobile-copyright">
             Made by atmnk.design
         </div>
 
@@ -987,8 +1029,8 @@
                     <li><strong>The Issue:</strong> The absence of a global header or game menu prevents users from easily navigating between different game stores, leading to confusion and high bounce rates.</li>
                 </ul>
 
-                <h3>Proposed Solution: "Hub & Spoke" Architecture</h3>
-                <div id="solution2-context" style="position: relative;">
+                <h3 id="solution2-context">Proposed Solution: "Hub & Spoke" Architecture</h3>
+                <div style="position: relative;">
                     <p style="color:var(--text-body); margin-bottom:1rem; margin-top: 0;">I propose transforming the Main Page into a central HUB designed to efficiently route traffic to specific game pages ("Spokes") (as detailed <a href="#hub-architecture" class="ref-link">here</a> in Opportunities).</p>
                 </div>
                 
@@ -1114,10 +1156,8 @@
         function toggleAccordion(btn) {
             // Toggle active state on the button (rotates arrow)
             btn.classList.toggle('active');
-            
             // Get the content div
             const content = btn.nextElementSibling;
-            
             // Toggle max-height for animation
             if (content.style.maxHeight) {
                 content.style.maxHeight = null;
@@ -1139,7 +1179,7 @@
                 }
             }
         });
-        
+
         // SESSION-BASED VISITED LINK LOGIC
         document.addEventListener('DOMContentLoaded', () => {
             const refLinks = document.querySelectorAll('a.ref-link');
@@ -1198,6 +1238,3 @@
     </script>
 </body>
 </html>
-
-
-
